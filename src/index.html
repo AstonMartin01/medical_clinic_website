@@ -1,13 +1,1278 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>MedicalClinicWebsite</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Clinica Hipocrate</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        color: #333;
+      }
+
+      a {
+        text-decoration: none;
+        /* color: inherit; */
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .container {
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 0.5rem;
+      }
+
+      .top-bar {
+        background: #fff;
+        padding: 1.25rem;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 0.05rem solid #ccc;
+      }
+
+      .footer {
+        background: #fff;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 0.05rem solid #ccc;
+      }
+
+      .search-bar {
+        color: white;
+        text-align: center;
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+
+      .search-bar h2 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .search-bar input[type="text"] {
+        background-color: #F2F2F2;
+        color: black;
+        padding: 0.5rem;
+        width: 100%;
+        min-width: 25rem;
+      }
+
+      .grid {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .sidebar-left {
+        flex: 1;
+        max-width: 17.5rem;
+        background: white;
+        padding: 0.75rem;
+        margin: 0.5rem;
+        border: 0.05rem solid #ddd;
+      }
+
+      .sidebar-left li {
+        padding: 0.4rem 0;
+        border-bottom: 0.05rem solid #eee;
+      }
+
+      .sidebar-left-position {
+        margin-top: -0.8rem;
+      }
+
+      .sidebar-right {
+        flex: 1;
+        max-width: 100%;
+        background: white;
+        padding: 0.75rem;
+        margin: 0.5rem;
+        border: 0.05rem solid #ddd;
+        align-items: center;
+        text-align: center;
+      }
+
+      .main-content {
+        flex: 2;
+        background: white;
+        padding: 0.75rem;
+        margin: 0.5rem;
+      }
+
+      .card-img {
+        width: 100%;
+        height: auto;
+        border: 0.05rem solid black;
+        border-radius: 0.5rem;
+        text-align: center;
+      }
+
+      .services,
+      .doctors,
+      .clinics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        padding: 1rem 2rem 2rem 1rem;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+      }
+
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        padding: 1rem;
+        /* margin-bottom: -1rem; */
+        margin-top: -2rem;
+      }
+
+      .service-card {        
+        border-radius: 1.5rem;
+        flex: 1;
+        min-width: 100%;
+        background: #fff;
+        padding: 1rem;
+        margin: 0.5rem;
+        text-align: center;
+        /* border: 0.1rem solid black; */
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        background: #21B4B8;
+        color: white;
+      }
+
+      .color-white {
+        border-radius: 1.5rem;
+        flex: 1;
+        min-width: 200px;
+        background-color: #21B4B8;
+        padding: 20px;
+        text-align: center;
+        border: 2px solid #ddd;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        padding: 20px;
+        /* background: #00a1b3; */
+        color: white;
+      }
+
+      .link-column {
+        flex: 1;
+        min-width: 33%;
+        text-align: center;
+        border: 0.05rem solid black;
+        border-radius: 0.5rem;
+        padding: 1rem;
+      }
+
+      .link-column li {
+        margin: 0.5rem;
+        cursor: pointer;
+      }
+
+      .footer {
+        margin-top: -1rem;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .doctors h4,
+      .link-column strong {
+        margin-bottom: 0.5rem;
+        display: block;
+        color: #004b87;
+      }
+
+      .doctors ul,
+      .link-column ul {
+        margin-bottom: 1rem;
+      }
+
+      @media (max-width: 53.4rem) {
+        .grid {
+          flex-direction: column;
+        }
+
+        .search-bar input[type="text"] {
+          width: 100%;
+        }
+
+        .search-bar {          
+          width: 100%;
+        }
+
+        .sidebar-left-position {
+          margin-top: 0;
+        }
+      }
+
+      .editable-placeholder {
+        border: 0.05rem solid #ccc;
+        padding: 0.25rem;
+        font-family: Arial;
+        color: red;
+        /* background-color: #F2F2F2; */
+        min-width: 27.5rem;
+        border-radius: 1.5rem;
+      }
+
+      .medical-news {
+        margin: 0.5rem 0.5rem;
+        background: white;
+        padding: 1rem;
+        border: 0.05rem solid #ddd;
+      }
+
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem;
+      }
+
+      .news-grid img {
+        width: 100%;
+        height: 15rem;
+        object-fit: cover;
+        border: 0.1rem solid #ccc;
+      }
+
+      .news-grid img:hover {
+        border-color: #004b87;
+      }
+
+      .hide-on-desktop {
+        display: none;
+      }
+
+      .hamburger {
+        display: none;
+        font-size: 1.5rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        margin: 0.5rem;
+      }
+
+      .hamburger-icon {
+        background-color: white; 
+        padding: 0.25rem;
+        border-radius: 0.25rem;
+      }
+
+      .login-button-secondary {
+        display: none;
+        cursor: pointer;
+        border: 0.05rem solid black;
+        padding: 15px;
+        border-radius: 30px;
+        background-color: #21B4B8;
+        color: white;
+        margin-top: -0.75rem;
+      }
+
+      .login-button-secondary-icon {
+        color: red;
+      }
+
+        .display-inline-block {
+          /* display: inline-block; */
+          /* flex: 1 1 30%;
+          width: 49%;
+          min-width: 12.5rem;
+          align-items: center; */
+          padding-bottom: 0.8rem;
+        }
+
+      @media (max-width: 53.4rem) {
+        .top-bar {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.5rem;
+          text-align: center;
+          align-items: center;
+        }
+
+        .editable-placeholder {
+          margin-top: 0.5rem;
+          min-width: unset;
+          width: 100%;
+        }
+
+        .services {
+          margin-top: -0.5rem;
+          margin-bottom: -1rem;
+        }
+
+        .display-block {
+          display: block;
+        }
+
+        .hide-on-mobile {
+          display: none;
+        }
+
+        .news-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.75rem;
+        }
+
+        .color-white {
+          border-radius: 1.5rem;
+          flex: 1;
+          min-width: 30%;
+          background-color: #21B4B8;
+          padding: 20px;
+          text-align: center;
+          border: 2px solid #ddd;
+          font-weight: bold;
+          text-transform: uppercase;
+          cursor: pointer;
+          padding: 20px;
+          /* background: #00a1b3; */
+          color: white;
+          /* max-width: 50%; */
+        }
+
+        .contact-info {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          flex-direction: row;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .contact-info span {
+          margin: 0 1rem;
+        }
+      }
+
+      @media (max-width: 53.4rem) {
+        .hamburger {
+          display: block;
+        }
+
+        .login-button-secondary {
+          display: block;          
+        }
+
+        .sidebar-left.active {
+          left: 0;
+        }
+
+        .grid {
+          flex-direction: column;
+        }
+
+        .display-inline-block {
+          display: inline-block;
+          flex: 1 1 30%;
+          width: 49%;
+          min-width: 12.5rem;
+          align-items: center;
+        }
+
+        .sidebar-left {
+          position: relative;
+          left: 0;
+          width: 100%;
+          height: auto;
+          box-shadow: none;
+          display: none;
+          text-align: center;
+          max-width: 100%;
+          margin: 0;
+        }
+
+        .sidebar-left.active {
+          display: block;
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 38.4rem) {
+        .display-inline-block {
+          display: inline-block;
+          flex: 1 1 30%;
+          min-width: 100%;
+          align-items: center;
+        }
+
+        .news-grid {
+          grid-template-columns: repeat(1, 1fr);
+          gap: 0.75rem;
+        }
+
+        .color-white {
+          border-radius: 1.5rem;
+          flex: 1;
+          min-width: 49%;
+          background-color: #21B4B8;
+          padding: 20px;
+          text-align: center;
+          border: 2px solid #ddd;
+          font-weight: bold;
+          text-transform: uppercase;
+          cursor: pointer;
+          padding: 20px;
+          /* background: #00a1b3; */
+          color: white;
+          /* max-width: 50%; */
+        }
+
+        .link-column {
+          flex: 1;
+          min-width: 100%;
+        }
+      }
+
+      .news-item {
+        text-align: center;
+        cursor: pointer;
+        padding-bottom: 0.8rem;
+      }
+
+      .news-item p {
+        margin-top: 0.4rem;
+        font-size: 0.8rem;
+        color: #004b87;
+        font-weight: bold;
+      }
+
+      .news-item-img {
+        border-radius: 0.5rem;
+        border: 0.05rem solid black;
+      }
+
+      .search-bar-flex {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        gap: 0.5rem;
+      }
+
+      .search-icon {
+        color: red;
+        margin-left: auto;
+        font-size: 0.9rem;
+      }
+
+      .sidebar-right-option {
+        border-radius: 1.5rem;
+        color: white;
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+
+      .sidebar-right-img {
+        border-radius: 0.5rem;
+        border: 0.05rem solid black;
+        width: 100%;
+        height: 160px;
+      }
+
+      .logo {
+        color: white; 
+        background-color: #21B4B8; 
+        padding: 15px; 
+        cursor: pointer; 
+        border-radius: 30px;
+      }
+
+      .logo-icon {
+        color: red; 
+        font-size: 30px;
+      }
+
+      .search-bar-icon {
+        cursor: pointer;
+      }
+
+      .login-button-primary {
+        cursor: pointer;
+        border: 0.05rem solid black;
+        padding: 15px;
+        border-radius: 30px;
+        background-color: #21B4B8;
+        color: white;
+      }
+
+      .login-button-primary-icon {
+        color: red;
+      }
+
+      .contact-info {
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        gap: 1rem;
+        text-align: center;
+        flex-wrap: wrap;
+        padding: 1rem;
+      }
+
+      .iframe-style {
+        width: 100%;
+        height: 250px;
+        border-radius: 0.5rem; 
+        border-style: none;
+        padding: 0;
+        margin: 0;
+        border: 0.05rem solid black;
+      }
+
+      .contact {
+        text-align: center;
+        padding: 1rem;
+        background-color: white;
+      }
+    </style>
+
+    <style>
+      .modal-overlay {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background-color: rgba(0, 0, 0, 0.5);
+          justify-content: center;
+          align-items: center;
+          z-index: 9999;
+          padding: 1rem;
+          box-sizing: border-box;
+      }
+
+      .modal {
+          background-color: #fff;
+          padding: 2rem;
+          border-radius: 0.5rem;
+          max-width: 40rem;
+          width: 90vw;
+          max-height: 90vh;
+          overflow-y: auto;
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+          position: relative;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.75rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #888;
+        cursor: pointer;
+      }
+
+      .close-btn:hover {
+        color: #000;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .form-group {
+        width: 100%;
+      }
+
+      .form-group-full {
+        flex: 1 1 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        margin-bottom: 0.3rem;
+        font-weight: bold;
+      }
+
+      input, select, textarea {
+        padding: 0.6rem;
+        font-size: 1rem;
+        border: 0.1rem solid #ccc;
+        border-radius: 0.5rem;
+        width: 100%;
+      }
+
+      textarea {
+        resize: none;
+        width: 100%;
+      }
+
+      .modal-btn {
+        padding: 0.5rem;
+        font-size: 1rem;
+        background-color: #21B4B8;
+        color: #fff;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+      }
+
+      .modal-btn:hover {
+        background-color: #FE0000;
+      }
+
+      .footer-section {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .padding10 {
+        padding: 10px;
+        text-align: center;
+      }
+
+      .feedback-list {
+        max-height: 135px;
+        overflow-y: auto;
+        margin-bottom: 10px;
+        width: 100%;
+        text-align: center;
+        border: 1px solid black;
+        padding: 1rem;
+        border-radius: 0.5rem;
+      }
+
+      .feedback-button {
+        border-radius: 20px;
+        background-color: #21B4B8;
+        color: white;
+        padding: 0.5rem;
+        cursor: pointer;
+      }
+    </style>    
+  </head>
+
+  <body>
+    <app-root></app-root>
+    <div class="top-bar">
+      <div class="logo"><strong>Clinica <i class="fa fa-heartbeat logo-icon"></i> Hipocrate</strong></div>
+      <!-- <div class="search-bar"><input type="text" value="te rugam sa cauti aici, de exemplu: <i>'mă doare X...'</i>" /></div> -->
+      <div class="search-bar">
+        <div contenteditable="true" class="editable-placeholder"> 
+          te rugăm să cauți aici, 
+          <span class="display-block">
+            <strong>exemplu:</strong> 
+            <i>„mă doare X...”</i> 
+          </span> 
+        </div>
+        <i class="fa fa-search search-icon search-bar-icon"></i>
+      </div>
+      <div class="login-button-primary hide-on-mobile"> <i class='fa fa-user-circle login-button-primary-icon hide-on-mobile'></i> Conecteaza-te</div>
+    </div>
+
+    <div class="main-div">
+      <div class="container">
+        <div class="grid">
+          <button class="hamburger" id="hamburger">
+            <span class="hamburger-icon">
+              &#9776;
+            </span>            
+          </button>
+          <!-- ☰ -->
+          <div class="sidebar-left">
+            <ul class="sidebar-left-position">
+              <li>
+                <a href="">
+                  <div class="login-button-secondary"> <i class='fa fa-user-circle login-button-secondary-icon'></i> Conecteaza-te</div>
+                </a>
+              </li>
+              <li><a href="">Clinica Hipocrate</a></li>
+              <li><a href="">Medici</a></li>
+              <li><a href="">Clinici</a></li>
+              <li><a href="">Analize</a></li>
+              <li><a href="">Investigații și tratamente</a></li>
+              <li><a href="">Spital București</a></li>
+              <li><a href="">Camera de gardă adulți</li>          
+              <li><a href="">Spitalizare de zi</a></li>
+              <li><a href="">Maternitate</a></li>
+              <li><a href="">Centrul de sănătate a femeii</a></li>
+              <li><a href="">Abonamente individuale</a></li>
+              <li><a href="">Abonamente Corporate</a></li>
+              <li><a href="">Articole despre sănătate</a></li>
+              <li><a href="">Locuri de muncă</a></li>
+              <li><a href="">Contact</a></li>
+            </ul>
+          </div>
+          <div class="main-content">
+            
+            <!-- <div class="card">  -->
+              <img class="card-img" src="https://www.shutterstock.com/image-photo/telemedicine-offer-young-woman-doctor-260nw-2437293129.jpg" alt="banner"> 
+            <!-- </div> -->
+            <h2 style="text-align: center; margin-top: 1rem; margin-bottom: -1rem;">Clinica si Abonamentele</h2>
+            <div class="services">              
+              <div type="button" id="openIndividualSubBtn" class="service-card">Pentru tine și familia ta</div>
+              <div type="button" id="openEnterpriseSubBtn" class="service-card">Pentru tine și compania ta</div>
+              <div type="button" id="openPersonelBtn" class="service-card">Personalul si Sectiile</div>
+            </div>
+          </div>
+          <div class="sidebar-right">
+            <!-- <div style="border:1px solid #ccc;padding:10px;margin-bottom:10px;"> -->
+            <!-- <strong>Contul meu</strong> -->
+            <!-- <button style="display:block;margin-top:10px;width:100%;background:#004b87;color:white;padding:8px;">Conectare</button> -->
+            <!-- </div> -->
+            <div class="display-inline-block"> <img class="sidebar-right-img" src="https://www.shutterstock.com/image-vector/clinic-building-doctors-nurse-standing-260nw-1198946542.jpg" alt="promo" />
+              <button class="sidebar-right-option" id="openModalBtn" style="background:#FE0000;">Programare online</button>
+            </div>
+            <div class="display-inline-block"> <img class="sidebar-right-img" src="https://www.shutterstock.com/image-vector/parents-newborn-stretcher-hospitalization-room-260nw-1459969364.jpg" alt="promo" />
+              <button class="sidebar-right-option" id="openInvestigationBtn" style="background:#21B4B8;">Proceduri investigare</button>
+            </div>
+            <div class="display-inline-block"> <img class="sidebar-right-img" src="https://www.shutterstock.com/image-vector/modern-medical-clinic-masked-patients-260nw-1784328896.jpg" alt="promo" />
+              <button class="sidebar-right-option" id="openRecoveryBtn" style="background:#21B4B8;">Produse recuperatorii</button>
+            </div>
+            <!-- <img src="https://www.shutterstock.com/image-vector/website-landing-page-hospital-doctors-260nw-1465274651.jpg" alt="promo" style="width:100%;" /> -->
+            <div class="display-inline-block"> <img class="sidebar-right-img" src="https://www.shutterstock.com/image-vector/website-landing-page-hospital-doctors-260nw-1465274651.jpg" alt="promo" />
+              <button class="sidebar-right-option" id="openServicesBtn" style="background:#21B4B8;">Servicii medicale</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-overlay" id="reservationModal">
+        <div class="modal">
+          <span class="close-btn" data-close="reservationModal">&times;</span>
+          <!-- <h2 style="margin-top: 0;">Reservation</h2> -->
+          <form id="reservationForm">
+            <div class="form-row">
+              <div class="form-group">
+                <!-- <label for="patientName">Name</label> -->
+                <input type="text" id="patientName" placeholder="Nume Pacient" required>
+              </div>
+              <div class="form-group">
+                <!-- <label for="patientEmail">Email</label> -->
+                <input type="email" id="patientEmail" placeholder="Email Pacient" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <!-- <label for="patientPhone">Phone</label> -->
+                <input type="tel" id="patientPhone" placeholder="Telefon Pacient" required>
+              </div>
+              <div class="form-group">
+                <!-- <label for="appointedDoctor">Appointed Doctor</label> -->
+                <input type="text" id="appointedDoctor" placeholder="Doctor de Specialitate" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <!-- <label for="appointmentDate">Appointment Date</label> -->
+                <input type="date" id="appointmentDate" required>
+              </div>            
+              <div class="form-group">
+                <!-- <label for="appointmentTime">Appointment Time</label> -->
+                <input type="time" id="appointmentTime" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group-full">
+                <!-- <label for="healthIssue">Health Issue</label> -->
+                <textarea id="healthIssue" rows="2" placeholder="Health Issue" required></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="modal-btn" onclick="submitReservation()">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="modal-overlay" id="investigationsModal">
+          <div class="modal">
+          <span class="close-btn" data-close="investigationsModal">&times;</span>
+          <!-- <h2 style="margin-top: 0;">Medical Investigation</h2> -->
+          <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+              <thead>
+                  <tr>
+                      <th style="text-align: left; padding: 0.6rem; border-bottom: 0.1rem solid #ccc;">Produse de Investigare</th>
+                      <th style="text-align: left; padding: 0.6rem; border-bottom: 0.1rem solid #ccc;">Pret</th>
+                  </tr>
+              </thead>
+              <tbody id="investigationsBody"></tbody>
+          </table>
+          </div>
+      </div>
+
+      <div class="modal-overlay" id="productsModal">
+          <div class="modal">
+          <span class="close-btn" data-close="productsModal">&times;</span>
+          <!-- <h2 style="margin-top: 0;">Recovery Product</h2> -->
+          <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+              <thead>
+                  <tr>
+                      <th style="text-align: left; padding: 0.6rem; border-bottom: 0.1rem solid #ccc;">Produse de Recuperare</th>
+                      <th style="text-align: left; padding: 0.6rem; border-bottom: 0.1rem solid #ccc;">Pret</th>
+                  </tr>
+              </thead>
+              <tbody id="productsBody"></tbody>
+          </table>
+          </div>
+      </div>
+
+      <div class="modal-overlay" id="servicesModal">
+          <div class="modal">
+          <span class="close-btn" data-close="servicesModal">&times;</span>
+          <!-- <h2 style="margin-top: 0;">Medical Services</h2> -->
+          <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+              <thead>
+                  <tr>
+                      <th style="text-align: left; padding: 0.6rem; border-bottom: 0.1rem solid #ccc;">Servicii Medicale</th>
+                      <th style="text-align: left; padding: 0.6rem; border-bottom: 0.1rem solid #ccc;">Pret</th>
+                  </tr>
+              </thead>
+              <tbody id="servicesBody"></tbody>
+          </table>
+          </div>
+      </div>
+
+      <div class="modal-overlay" id="individualModal">
+          <div class="modal">
+              <span class="close-btn" data-close="individualModal">&times;</span>
+              <h2 style="margin-top: 0;">Abonament Individual</h2>
+              <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                  <thead>
+                      <tr>
+                          <th style="text-align: left; padding: 0.6rem; border-bottom: 0.1rem solid #ccc;">Perioada</th>
+                          <th style="text-align: left; padding: 0.6rem; border-bottom: 0.1rem solid #ccc;">Pret</th>
+                      </tr>
+                  </thead>
+                  <tbody id="individualBody"></tbody>
+              </table>
+          </div>
+      </div>
+
+      <div class="modal-overlay" id="enterpriseModal">
+          <div class="modal">
+              <span class="close-btn" data-close="enterpriseModal">&times;</span>
+              <h2 style="margin-top: 0;">Abonament Corporate</h2>
+              <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                  <thead>
+                      <tr>
+                          <th style="text-align: left; padding: 0.6rem; border-bottom: 0.1rem solid #ccc;">Perioada</th>
+                          <th style="text-align: left; padding: 0.6rem; border-bottom: 0.1rem solid #ccc;">Pret</th>
+                      </tr>
+                  </thead>
+                  <tbody id="enterpriseBody"></tbody>
+              </table>
+          </div>
+      </div>
+      
+      <div class="modal-overlay" id="personelModal">
+        <div class="modal">
+        <span class="close-btn" data-close="personelModal">&times;</span>
+        <h2 style="margin-top: 0;">Personalul Medical</h2>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+            <thead>
+                <tr>
+                    <th style="text-align: left; padding: 0.6rem; border-bottom: 0.1rem solid #ccc;">Doctori</th>
+                    <th style="text-align: left; padding: 0.6rem; border-bottom: 0.1rem solid #ccc;">Specializari</th>
+                </tr>
+            </thead>
+            <tbody id="personelBody"></tbody>
+        </table>
+        </div>
+      </div>
+
+      <div class="medical-news">
+        <div class="news-grid">
+          <div class="news-item">
+            <img class="news-item-img" src="https://www.shutterstock.com/image-photo/mid-adult-businessman-healthcare-workers-260nw-1773233804.jpg" alt="Știre 1" >
+            <p>Abonamente Corporate</p>
+          </div>
+          <div class="news-item">
+            <img class="news-item-img" src="https://www.shutterstock.com/image-photo/doctor-showing-his-business-card-600nw-248139163.jpg" alt="Știre 2">
+            <p>Abonamente Individuale</p>
+          </div>
+          <div class="news-item">
+            <img class="news-item-img" src="https://www.shutterstock.com/image-photo/medical-team-performing-surgical-operation-260nw-741433855.jpg" alt="Știre 3">
+            <p>Specialitati Chirurgicale</p>
+          </div>
+          <div class="news-item">
+            <img class="news-item-img" src="https://www.shutterstock.com/image-photo/medical-research-center-closeup-portrait-260nw-2456037151.jpg" alt="Știre 4">
+            <p>Imagistica Medicala</p>
+          </div>
+          <div class="news-item">
+            <img class="news-item-img" src="https://www.shutterstock.com/shutterstock/photos/2505610267/display_1500/stock-photo-doctor-explains-concept-of-disease-management-and-insurance-coverage-to-person-highlighting-2505610267.jpg" alt="Știre 5">
+            <p>Asigurari Medicale</p>
+          </div>
+          <div class="news-item">
+            <img class="news-item-img" src="https://www.shutterstock.com/image-photo/hospital-midwife-gives-newborn-baby-600nw-1181842981.jpg" alt="Știre 6">
+            <p>Maternitate si Indemnizatie</p>
+          </div>
+        </div>      
+      </div>
+      <div class="clinics" style="background-color: white;">
+        <a target="_blank" class="color-white" href="https://www.google.ro/maps/place/Bucharest/@44.4377068,25.9294869,11z/data=!3m1!4b1!4m6!3m5!1s0x40b1f93abf3cad4f:0xac0632e37c9ca628!8m2!3d44.4267674!4d26.1025384!16zL20vMDk2Z20?entry=ttu&g_ep=EgoyMDI1MDUyNi4wIKXMDSoASAFQAw%3D%3D">Clinici
+          <br> București</a>
+        <a target="_blank" class="color-white" href="https://www.google.ro/maps/place/Timi%C8%99oara/@45.7410348,21.1340176,12z/data=!3m1!4b1!4m6!3m5!1s0x4745677dcb0fb5a7:0x537faf6473936749!8m2!3d45.7557559!4d21.2322208!16zL20vMGdqMHg?entry=ttu&g_ep=EgoyMDI1MDUyNi4wIKXMDSoASAFQAw%3D%3D">Clinici
+          <br> Timișoara</a>
+        <a target="_blank" class="color-white" href="https://www.google.ro/maps/place/Bra%C8%99ov/@45.6524484,25.5138906,12z/data=!3m1!4b1!4m6!3m5!1s0x40b35b862aa214f1:0x6cf5f2ef54391e0f!8m2!3d45.6426802!4d25.5887252!16zL20vMGhqdGc?entry=ttu&g_ep=EgoyMDI1MDUyNi4wIKXMDSoASAFQAw%3D%3D">Clinici
+          <br> Brașov</a>
+        <a target="_blank" class="color-white" href="https://www.google.ro/maps/place/Br%C4%83ila/@45.240738,27.8640609,12z/data=!3m1!4b1!4m6!3m5!1s0x40b6d62ac5c69441:0x688e3ee9bf757c9e!8m2!3d45.2652463!4d27.9594714!16zL20vMDF3Yndu?entry=ttu&g_ep=EgoyMDI1MDUyNi4wIKXMDSoASAFQAw%3D%3D">Clinici
+          <br> Brăila</a>
+        <a target="_blank" class="color-white" href="https://www.google.ro/maps/place/Gala%C8%9Bi/@45.4376288,27.9649227,12z/data=!3m1!4b1!4m6!3m5!1s0x40b6dee589f2c4b5:0x53d7342f252d702b!8m2!3d45.4353208!4d28.0079945!16zL20vMDFtMHJi?entry=ttu&g_ep=EgoyMDI1MDUyNi4wIKXMDSoASAFQAw%3D%3D">Clinici
+          <br> Galați</a>
+        <a target="_blank" class="color-white" href="https://www.google.ro/maps/place/Ia%C8%99i/@47.1561076,27.5043983,12z/data=!3m1!4b1!4m6!3m5!1s0x40cafb7cf639ddbb:0x7ccb80da5426f53c!8m2!3d47.1584549!4d27.6014418!16zL20vMDFmaGcz?entry=ttu&g_ep=EgoyMDI1MDUyNi4wIKXMDSoASAFQAw%3D%3D">Clinici
+          <br> Iași</a>
+      </div>
+      <div class="footer">
+        <div class="footer-links">
+          <div class="link-column"> <strong>Clinica Hipocrate</strong>
+            <ul>
+              <li>Medici și Clinici</li>
+              <li>Despre Noi</li>
+              <li>Contact</li>
+            </ul>
+          </div>
+          <div class="link-column"> <strong>Despre sănătate</strong>
+            <ul>
+              <li>Articole medicale</li>
+              <li>Enciclopedia sănătății</li>
+              <li>Sanatate mintala</li>
+            </ul>
+          </div>
+          <div class="link-column"> <strong>Abonamente</strong>
+            <ul>
+              <li>Corporate</li>
+              <li>Individuale</li>
+              <li>Custom</li>
+            </ul>
+          </div>
+          <div class="link-column"> <strong>Spitalul Hipocrate</strong>
+            <ul>
+              <li>Servicii si Produse</li>
+              <li>Imagistică profesionala</li>
+              <li>Chirurgie Telepatica</li>
+            </ul>
+          </div>
+          <div class="link-column"> <strong>Maternitate si Pediatrie</strong>
+            <ul>
+              <li>Calculator Sarcina</li>
+              <li>Protocol Sarcina</li>
+              <li>Sarcina pe saptamani</li>
+            </ul>
+          </div>
+          <div class="link-column"> <strong>Clinica Hipocrate</strong>
+            <ul>
+              <li>Medici și Clinici</li>
+              <li>Despre Noi</li>
+              <li>Contact</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="feedback" style="padding: 1rem; background-color: white;">
+        <h3 class="padding10">Clients Feedbacks</h3>
+        <form id="feedback-form">
+          <input type="text" id="feedback-name" placeholder="Your Name" required />
+          <textarea id="feedback-message" rows="3" placeholder="Your Feedback" required></textarea>
+          <input type="number" id="feedback-name" placeholder="Your Rating (1-5)" required min="1" max="5"/>
+          <button type="submit" class="feedback-button" onclick="sendFeedback()">Submit</button>
+        </form>
+        
+        <br><br>
+
+        <div class="feedback-list" id="feedback-list">
+          <!-- Feedback items will be dynamically inserted here -->
+        </div>
+      </div>
+            
+      <div class="contact">        
+        <iframe class="iframe-style" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.685857297522!2d26.08804781558543!3d44.42721037910244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff37ac9e56d5%3A0x859f5d78a63fa10e!2sPalatul%20Parlamentului!5e0!3m2!1sen!2sro!4v1648123456789" allowfullscreen="" loading="lazy"> </iframe>
+        <div class="contact-info"> 
+          <span><strong>Address:</strong> Strada Izvor 2-4, București 050563</span> 
+          <span><strong>Email:</strong> contact@clinicahipocrate.ro</span> 
+          <span><strong>Phone:</strong> +40 21 123 4567</span> 
+        </div>
+        <p style="text-align: center;">&copy; 2025 Clinica Hipocrate</p>
+        <br>
+      </div>
+    </div>
+
+    <script>
+      // Selectăm butonul hamburger și meniul lateral
+      const hamburger = document.getElementById('hamburger');
+      const sidebar = document.querySelector('.sidebar-left');
+    
+      // Funcție pentru a comuta starea meniului (activat sau dezactivat)
+      function toggleMenu() {
+        sidebar.classList.toggle('active');
+      }
+    
+      // Clic pe butonul hamburger pentru a deschide/închide meniul
+      hamburger.addEventListener('click', (event) => {
+        toggleMenu();
+        event.stopPropagation(); // Oprirea propagării clicului
+      });
+    
+      // Clic în afara meniului pentru a-l închide
+      document.addEventListener('click', (event) => {
+        if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
+          sidebar.classList.remove('active');
+        }
+      });
+    
+      // Oprirea propagării clicului pe meniu, astfel încât să nu se închidă când utilizatorul face clic pe meniu
+      sidebar.addEventListener('click', (event) => {
+        event.stopPropagation();
+      });
+    </script>
+
+    <script>
+      const endpoints = {
+        investigations: {
+          url: 'http://localhost:35911/medical-clinic/investigation-procedures',
+          bodyId: 'investigationsBody',
+          render: (item) => `<tr><td style="padding: 0.6rem;">${item.name}</td><td style="padding: 0.6rem;">${item.price} $</td></tr>`
+        },
+        products: {
+          url: 'http://localhost:35911/medical-clinic/recovery-products',
+          bodyId: 'productsBody',
+          render: (item) => `<tr><td style="padding: 0.6rem;">${item.name}</td><td style="padding: 0.6rem;">${item.price} $</td></tr>`
+        },
+        services: {
+          url: 'http://localhost:35911/medical-clinic/medical-services',
+          bodyId: 'servicesBody',
+          render: (item) => `<tr><td style="padding: 0.6rem;">${item.name}</td><td style="padding: 0.6rem;">${item.price} $</td></tr>`
+        },
+        individual: {
+          url: 'http://localhost:35911/medical-clinic/subscriptions/1',
+          bodyId: 'individualBody',
+          render: (item) => `<tr><td style="padding: 0.6rem;">${item.period}</td><td style="padding: 0.6rem;">${item.price} $</td></tr>`
+        },
+        corporate: {
+          url: 'http://localhost:35911/medical-clinic/subscriptions/2',
+          bodyId: 'enterpriseBody',
+          render: (item) => `<tr><td style="padding: 0.6rem;">${item.period}</td><td style="padding: 0.6rem;">${item.price} $</td></tr>`
+        },
+        personel: {
+          url: 'http://localhost:35911/medical-clinic/personnel',
+          bodyId: 'personelBody',
+          render: (item) => `<tr><td style="padding: 0.6rem;">${item.name}</td><td style="padding: 0.6rem;">${item.specialty}</td></tr>`
+        }
+      };
+
+      async function fetchAndPopulateModal(modalKey) {
+        const config = endpoints[modalKey];
+        if (!config) return;
+
+        try {
+          const res = await fetch(config.url);
+          const data = await res.json();
+          const tbody = document.getElementById(config.bodyId);
+          tbody.innerHTML = data.map(config.render).join('');
+        } 
+        catch (error) {
+          console.error(`Error loading ${modalKey}:`, error);
+        }
+      }
+
+      // Modal opening logic
+      const modalTriggers = [
+        { buttonId: 'openModalBtn', modalId: 'reservationModal' },
+        { buttonId: 'openInvestigationBtn', modalId: 'investigationsModal', key: 'investigations' },
+        { buttonId: 'openRecoveryBtn', modalId: 'productsModal', key: 'products' },
+        { buttonId: 'openServicesBtn', modalId: 'servicesModal', key: 'services' },
+        { buttonId: 'openIndividualSubBtn', modalId: 'individualModal', key: 'individual' },
+        { buttonId: 'openEnterpriseSubBtn', modalId: 'enterpriseModal', key: 'corporate' },
+        { buttonId: 'openPersonelBtn', modalId: 'personelModal', key: 'personel' }
+      ];
+
+      modalTriggers.forEach(trigger => {
+        const btn = document.getElementById(trigger.buttonId);
+        const modal = document.getElementById(trigger.modalId);
+
+        if (btn && modal) {
+          btn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+            fetchAndPopulateModal(trigger.key);
+          });
+        }
+      });
+
+      // Close modals
+      document.querySelectorAll('.close-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const modalId = btn.getAttribute('data-close');
+          const modal = document.getElementById(modalId);
+          if (modal) modal.style.display = 'none';
+        });
+      });
+    
+      // Close modal when clicking outside of modal content
+      document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', (event) => {
+          if (event.target === overlay) {
+            overlay.style.display = 'none';
+          }
+        });
+      });
+
+      // Close modal when pressing Escape key
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.style.display = 'none';
+          });
+        }
+      });
+
+      async function submitReservation() {
+        event.preventDefault();
+
+        const payload = {
+          name: document.getElementById('patientName').value.trim(),
+          email: document.getElementById('patientEmail').value.trim(),
+          phone: document.getElementById('patientPhone').value.trim(),
+          doctor: document.getElementById('appointedDoctor').value.trim(),
+          scheduleDate: document.getElementById('appointmentDate').value,
+          scheduleTime: document.getElementById('appointmentTime').value,
+          healthIssue: document.getElementById('healthIssue').value.trim()
+        };
+
+        try {
+          const response = await fetch('http://localhost:35911/medical-clinic/reservation', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+
+          if (response.ok) {
+            alert('Reservation submitted successfully!');
+            document.getElementById('reservationModal').style.display = 'none';
+            document.getElementById('reservationForm').reset();
+          } 
+          else {
+            alert('Failed to submit reservation.');
+            console.error('Server response:', await response.text());
+          }
+        } 
+        catch (error) {
+          alert('An error occurred while submitting reservation.');
+          console.error('Error:', error);
+        }
+      }
+    </script>
+
+    <script>
+      async function loadFeedbacks() {
+        try {
+          const response = await fetch('http://localhost:35911/medical-clinic/feedbacks');
+          const feedbacks = await response.json();
+
+          const feedbackList = document.getElementById('feedback-list');
+          feedbackList.innerHTML = ''; // Clear existing content
+
+          feedbacks.forEach(feedback => {
+            const item = document.createElement('div');
+            item.className = 'feedback-item';
+            item.textContent = `${feedback.clientName} - "${feedback.message}" (${feedback.rating}★)`;
+            feedbackList.appendChild(item);
+          });
+
+        } 
+        catch (error) {
+          console.error('Eroare la încărcarea feedback-urilor:', error);
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', loadFeedbacks);
+
+      function sendFeedback() {
+        if (document.getElementById('feedback-form').dataset.listenerAttached === 'true') return;
+        
+        document.getElementById('feedback-form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById('feedback-name').value;
+        const message = document.getElementById('feedback-message').value;
+
+        const feedback = {
+          clientName: name,
+          message: message,
+          rating: 5
+        };
+
+        try {
+          const response = await fetch('http://localhost:35911/medical-clinic/feedback', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(feedback)
+          });
+
+          e.target.reset();
+          location.reload();
+          const contentType = response.headers.get("content-type");
+
+          if (response.ok) {
+            if (contentType && contentType.includes("application/json")) {
+              const data = await response.json();
+              alert(data.message || 'Feedback submitted!');              
+            } 
+            else {
+              alert('Feedback submitted successfully!');
+            }
+          }
+          else {
+            if (contentType && contentType.includes("application/json")) {
+              const errorData = await response.json();
+              alert('Failed: ' + (errorData.error || JSON.stringify(errorData)));
+            } 
+            else {
+              const text = await response.text();
+              alert('Failed with non-JSON response: ' + text);
+            }
+          }
+        }
+        catch (error) {
+          location.reload();
+          // alert('Error: ' + error.message);
+        }});
+
+        document.getElementById('feedback-form').dataset.listenerAttached = 'true';
+      }
+    </script>
+  </body>
 </html>
