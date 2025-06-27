@@ -676,6 +676,10 @@
         padding: 0.5rem;
         cursor: pointer;
       }
+
+      .feedback-item {
+        padding: 3px;
+      }
     </style>    
   </head>
 
@@ -733,7 +737,7 @@
           <div class="main-content">
             
             <!-- <div class="card">  -->
-              <img class="card-img" src="https://www.shutterstock.com/image-photo/telemedicine-offer-young-woman-doctor-260nw-2437293129.jpg" alt="banner"> 
+              <img class="card-img" src="assets/images/image1.jpg" alt="banner"> 
             <!-- </div> -->
             <h2 style="text-align: center; margin-top: 1rem; margin-bottom: -1rem;">Clinica si Abonamentele</h2>
             <div class="services">              
@@ -747,17 +751,17 @@
             <!-- <strong>Contul meu</strong> -->
             <!-- <button style="display:block;margin-top:10px;width:100%;background:#004b87;color:white;padding:8px;">Conectare</button> -->
             <!-- </div> -->
-            <div class="display-inline-block"> <img class="sidebar-right-img" src="https://www.shutterstock.com/image-vector/clinic-building-doctors-nurse-standing-260nw-1198946542.jpg" alt="promo" />
+            <div class="display-inline-block"> <img class="sidebar-right-img" src="assets/images/image2.jpg" alt="promo" />
               <button class="sidebar-right-option" id="openModalBtn" style="background:#FE0000;">Programare online</button>
             </div>
-            <div class="display-inline-block"> <img class="sidebar-right-img" src="https://www.shutterstock.com/image-vector/parents-newborn-stretcher-hospitalization-room-260nw-1459969364.jpg" alt="promo" />
+            <div class="display-inline-block"> <img class="sidebar-right-img" src="assets/images/image3.jpg" alt="promo" />
               <button class="sidebar-right-option" id="openInvestigationBtn" style="background:#21B4B8;">Proceduri investigare</button>
             </div>
-            <div class="display-inline-block"> <img class="sidebar-right-img" src="https://www.shutterstock.com/image-vector/modern-medical-clinic-masked-patients-260nw-1784328896.jpg" alt="promo" />
+            <div class="display-inline-block"> <img class="sidebar-right-img" src="assets/images/image4.jpg" alt="promo" />
               <button class="sidebar-right-option" id="openRecoveryBtn" style="background:#21B4B8;">Produse recuperatorii</button>
             </div>
             <!-- <img src="https://www.shutterstock.com/image-vector/website-landing-page-hospital-doctors-260nw-1465274651.jpg" alt="promo" style="width:100%;" /> -->
-            <div class="display-inline-block"> <img class="sidebar-right-img" src="https://www.shutterstock.com/image-vector/website-landing-page-hospital-doctors-260nw-1465274651.jpg" alt="promo" />
+            <div class="display-inline-block"> <img class="sidebar-right-img" src="assets/images/image5.jpg" alt="promo" />
               <button class="sidebar-right-option" id="openServicesBtn" style="background:#21B4B8;">Servicii medicale</button>
             </div>
           </div>
@@ -913,27 +917,27 @@
       <div class="medical-news">
         <div class="news-grid">
           <div class="news-item">
-            <img class="news-item-img" src="https://www.shutterstock.com/image-photo/mid-adult-businessman-healthcare-workers-260nw-1773233804.jpg" alt="Știre 1" >
+            <img class="news-item-img" src="assets/images/image6.jpg" alt="Știre 1" >
             <p>Abonamente Corporate</p>
           </div>
           <div class="news-item">
-            <img class="news-item-img" src="https://www.shutterstock.com/image-photo/doctor-showing-his-business-card-600nw-248139163.jpg" alt="Știre 2">
+            <img class="news-item-img" src="assets/images/image7.jpg" alt="Știre 2">
             <p>Abonamente Individuale</p>
           </div>
           <div class="news-item">
-            <img class="news-item-img" src="https://www.shutterstock.com/image-photo/medical-team-performing-surgical-operation-260nw-741433855.jpg" alt="Știre 3">
+            <img class="news-item-img" src="assets/images/image8.jpg" alt="Știre 3">
             <p>Specialitati Chirurgicale</p>
           </div>
           <div class="news-item">
-            <img class="news-item-img" src="https://www.shutterstock.com/image-photo/medical-research-center-closeup-portrait-260nw-2456037151.jpg" alt="Știre 4">
+            <img class="news-item-img" src="assets/images/image9.jpg" alt="Știre 4">
             <p>Imagistica Medicala</p>
           </div>
           <div class="news-item">
-            <img class="news-item-img" src="https://www.shutterstock.com/shutterstock/photos/2505610267/display_1500/stock-photo-doctor-explains-concept-of-disease-management-and-insurance-coverage-to-person-highlighting-2505610267.jpg" alt="Știre 5">
+            <img class="news-item-img" src="assets/images/image10.jpg" alt="Știre 5">
             <p>Asigurari Medicale</p>
           </div>
           <div class="news-item">
-            <img class="news-item-img" src="https://www.shutterstock.com/image-photo/hospital-midwife-gives-newborn-baby-600nw-1181842981.jpg" alt="Știre 6">
+            <img class="news-item-img" src="assets/images/image11.jpg" alt="Știre 6">
             <p>Maternitate si Indemnizatie</p>
           </div>
         </div>      
@@ -972,7 +976,7 @@
             <ul>
               <li>Corporate</li>
               <li>Individuale</li>
-              <li>Custom</li>
+              <li>Personalizate</li>
             </ul>
           </div>
           <div class="link-column"> <strong>Spitalul Hipocrate</strong>
@@ -1090,18 +1094,63 @@
         }
       };
 
+      const fallbackData = {
+        investigations: [
+          { name: "Scanare MRI", price: 300 },
+          { name: "Scanare CT", price: 400 },
+          { name: "Scanare X-Ray", price: 100 },
+          { name: "Test de Sange", price: 150 },
+          { name: "Ultrasunet", price: 200 }
+        ],
+        products: [
+          { name: "Ghips", price: 80 },
+          { name: "Orteza", price: 90 },
+          { name: "Bandaj", price: 20 },
+          { name: "Genunchiera", price: 45 },
+          { name: "Cotiera", price: 35 }
+        ],
+        services: [
+          { name: "Consultatie generala", price: 70 },
+          { name: "Consultatie de specialitate", price: 90 },
+          { name: "Vaccinare", price: 30 },
+          { name: "Radioterapie", price: 80 },
+          { name: "Fizioterapie", price: 60 }
+        ],
+        individual: [
+          { period: "Monthly", price: 100 },
+          { period: "Annually", price: 1000 },
+          { period: "Lifetime", price: 500000 }
+        ],
+        corporate: [
+          { period: "Monthly", price: 500 },
+          { period: "Annually", price: 5000 },
+          { period: "Lifetime", price: 2000000 }
+        ],        
+        personel: [
+          { name: "Louis Pasteur", specialty: "Virusologie" },
+          { name: "Alexander Fleming", specialty: "Epidemiologie" },
+          { name: "Marie Curie", specialty: "Chirurgie Plastica" },
+          { name: "Charles Darwin", specialty: "Microbiologie" },
+          { name: "Sigmund Freud", specialty: "Neurologie" },
+          { name: "Albert Einstein", specialty: "Psihiatrie" }
+        ]
+      };
+
       async function fetchAndPopulateModal(modalKey) {
         const config = endpoints[modalKey];
         if (!config) return;
+        
+        const tbody = document.getElementById(config.bodyId);
 
         try {
           const res = await fetch(config.url);
-          const data = await res.json();
-          const tbody = document.getElementById(config.bodyId);
+          const data = await res.json();          
           tbody.innerHTML = data.map(config.render).join('');
         } 
         catch (error) {
-          console.error(`Error loading ${modalKey}:`, error);
+          // console.error(`Error loading ${modalKey}:`, error);
+          const fallback = fallbackData[modalKey];
+          tbody.innerHTML = fallback.map(config.render).join('');
         }
       }
 
@@ -1209,10 +1258,21 @@
             item.textContent = `${feedback.clientName} - "${feedback.message}" (${feedback.rating}★)`;
             feedbackList.appendChild(item);
           });
-
         } 
         catch (error) {
-          console.error('Eroare la încărcarea feedback-urilor:', error);
+          // console.error('Eroare la încărcarea feedback-urilor:', error);
+          const response = await fetch('http://localhost:4200/assets/data/feedbacks.json');
+          const feedbacks = await response.json();
+
+          const feedbackList = document.getElementById('feedback-list');
+          feedbackList.innerHTML = ''; // Clear existing content
+
+          feedbacks.forEach(feedback => {
+            const item = document.createElement('div');
+            item.className = 'feedback-item';
+            item.textContent = `${feedback.clientName} - "${feedback.message}" (${feedback.rating}★)`;
+            feedbackList.appendChild(item);
+          });          
         }
       }
 

@@ -1,0 +1,32 @@
+[
+  {
+    "clientName": "John",
+    "message": "The top services in the country!",
+    "rating": 4
+  },
+  {
+    "clientName": "Victor",
+    "message": "Supportive medical staff!",
+    "rating": 5
+  },
+  {
+    "clientName": "Mihai",
+    "message": "Best doctors ever!",
+    "rating": 4
+  },
+  {
+    "clientName": "Maria",
+    "message": "Asistentele de aici au fost foarte grijulii!",
+    "rating": 3
+  },
+  {
+    "clientName": "Geo",
+    "message": "E super clinica asta!",
+    "rating": 5
+  },
+  {
+    "clientName": "Radu",
+    "message": "Sper sa mai revin doar in calitate de turist.",
+    "rating": 5
+  }  
+]
