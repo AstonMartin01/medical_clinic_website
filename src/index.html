@@ -1444,7 +1444,7 @@
         } 
         catch (error) {
           // console.error('Eroare la încărcarea feedback-urilor:', error);
-          const response = await fetch('http://localhost:4200/assets/data/feedbacks.json');
+          const response = await fetch('/assets/data/feedbacks.json');
           const feedbacks = await response.json();
 
           const feedbackList = document.getElementById('feedback-list');
